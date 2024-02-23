@@ -35,7 +35,7 @@
           <div class="col-sm-4 offset-md-1 py-4">
             <h4 class="text-white">CONTATOS</h4>
             <ul class="list-unstyled">
-              <li><a href="https://www.linkedin.com/in/adintel-ti-2670482a8/" class="text-white">Linkedin</a></li>
+              <li><a href="https://www.linkedin.com/in/adintel-ti-2670482a8/" target="_blank" class="text-white">Linkedin</a></li>
               <li><a href="#" class="text-white">Facebook</a></li>
               <li><a href="#" class="text-white">Email</a></li>
             </ul>
@@ -144,7 +144,7 @@
         <form id="contactForm">
           <div class="form-group">
             <label for="txtNome">Nome:</label>
-            <input type="text"  class="form-control" id="txtNome" name="txtNome" required>
+            <input type="text" class="form-control" id="txtNome" name="txtNome" required>
           </div>
           <div class="form-group">
             <label for="txtEmail">Email:</label>
@@ -152,7 +152,7 @@
           </div>
           <div class="form-group">
             <label for="txtMensagem">Mensagem:</label>
-            <textarea id="txtMensagem"class="form-control" name="txtMensagem" required></textarea>
+            <textarea id="txtMensagem" class="form-control" name="txtMensagem" required></textarea>
           </div>
           <div class="form-group text-center">
             <span id="errorMsg" class="error"></span><br>
@@ -220,11 +220,47 @@
     errorMsg.textContent = "Obrigado pelo seu contato, retornaremos em breve!";
   }
 </script>
-<script>
-  function CancelarForm() {
 
-    alert("Cancelado com Sucesso!")
-  }
+<script>
+  //Código que envia o email
+  // Configuração para enviar o email usando fetch
+  var apiUrl = "https://localhost:7089/SendEmail"; // Substitua pelo endpoint correto da sua API
+
+  var emailData = {
+    from: email,
+    to: ["adintelti@gmail.com"],
+    subject: `contato de ${nome}`,
+    body: `mensagem informada no formulário: ${mensagem}`
+  };
+
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(emailData)
+  })
+    .then(response => {
+      if (response.ok) {
+        alert('Email enviado com sucesso!');
+        form.reset();
+        errorMsg.textContent = "Obrigado pelo seu contato, retornaremos em breve!";
+      } else {
+        throw new Error('Erro ao enviar email');
+      }
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+      alert('Houve um erro ao enviar o email. Por favor, tente novamente mais tarde.');
+      errorMsg.textContent = "Houve um erro ao enviar o email. Por favor, tente novamente mais tarde.";
+    });
+</script>
+
+<script>
+function CancelarForm() {
+
+alert("Cancelado com Sucesso!")
+}
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none"
