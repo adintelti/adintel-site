@@ -76,7 +76,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="card mb-4 box-shadow">
-            <img src="./images/logo.png" style="height: 300px; width: 100%; display: block;">
+            <img src="./images/logo.png" style="height: 225px; width: 100%; display: block;">
             <div class="card-body">
               <p class="card-text">AMSS-After market support system, é um projeto desenvolvido em BPMNS para atender
                 fluxos
@@ -95,7 +95,7 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4 box-shadow">
-            <img src="./images/logo.png" style="height: 325px; width: 100%; display: block;">
+            <img src="./images/logo.png" style="height: 225px; width: 100%; display: block;">
             <div class="card-body">
               <p class="card-text">Sistema Phoenix - Um sistema hibrido entre windows e web application para gerenciar
                 informações biométricas de pessoas detidas.
@@ -113,7 +113,7 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4 box-shadow">
-            <img src="./images/logo.png" style="height: 325px; width: 100%; display: block;">
+            <img src="./images/logo.png" style="height: 225px; width: 100%; display: block;">
             <div class="card-body">
               <p class="card-text">ICare e ICare parceiro - Sistema de sac e sac para prestadores de serviço para
                 suportar
@@ -163,18 +163,17 @@
       </div>
     </div>
   </section>
+  <p>AdintelTi Consultoria e Soluções@2022
+    Rua Caim, 71 Jardim São Pedro - Barueri SP, Brasil, CEP:06402-230</p>
+
   <footer class="text-muted" id="address" hidden="true">
     <div class="container">
       <p class="float-right">
         <a href="#">Voltar para o topo</a>
       </p>
     </div>
-    <p>AdintelTi Consultoria e Soluções@2022
-      Rua Caim, 71 Jardim São Pedro - Barueri SP, Brasil, CEP:06402-230</p>
-    
   </footer>
 </body>
- 
 <script src="./scripts/jquery-3.2.1.slim.min.js.transferir"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="./scripts/jquery-3.2.1.slim.min.js.transferir"><\/script>')</script>
@@ -188,6 +187,8 @@
     document.getElementById("contact").hidden = false;
     document.getElementById("address").hidden = false;
   }
+</script>
+<script>
   function Enviar() {
     const form = document.getElementById("contactForm");
     var nome = form.elements["txtNome"].value.trim();
@@ -218,6 +219,9 @@
     // Limpa mensagens de erro anteriores
     errorMsg.textContent = "Obrigado pelo seu contato, retornaremos em breve!";
   }
+</script>
+
+<script>
   //Código que envia o email
   // Configuração para enviar o email usando fetch
   var apiUrl = "https://localhost:7089/SendEmail"; // Substitua pelo endpoint correto da sua API
@@ -250,6 +254,9 @@
       alert('Houve um erro ao enviar o email. Por favor, tente novamente mais tarde.');
       errorMsg.textContent = "Houve um erro ao enviar o email. Por favor, tente novamente mais tarde.";
     });
+</script>
+
+<script>
 function CancelarForm() {
 
 alert("Cancelado com Sucesso!")
