@@ -27,7 +27,8 @@
           <div class="col-sm-4 offset-md-1 py-4">
             <h4 class="text-white">CONTATOS</h4>
             <ul class="list-unstyled">
-              <li><a href="https://www.linkedin.com/in/adintel-ti-2670482a8/" target="_blank" class="text-white">Linkedin</a></li>
+              <li><a href="https://www.linkedin.com/in/adintel-ti-2670482a8/" target="_blank"
+                  class="text-white">Linkedin</a></li>
               <li><a href="#" class="text-white" onclick="ShowForm()">Email</a></li>
             </ul>
           </div>
@@ -127,28 +128,45 @@
     </div>
   </main>
 
-  <section id="contact" hidden="true" class="jumbotron">
-    <div class="container">
-      <h1 class="jumbotron-heading text-center">Formulário de contato</h1>
-      <div class="form-container">
-        <form id="contactForm">
-          <div class="form-group">
-            <label for="txtNome">Nome:</label>
-            <input type="text" id="txtNome" name="txtNome" required>
-          </div>
-          <div class="form-group">
-            <label for="txtEmail">Email:</label>
-            <input type="txtEmail" id="txtEmail" name="txtEmail" required>
-          </div>
-          <div class="form-group">
-            <label for="txtMensagem">Mensagem:</label>
-            <textarea id="txtMensagem" name="txtMensagem" required></textarea>
-          </div>
-          <div class="form-group text-center">
-            <span id="errorMsg" class="error"></span><br>
-            <a href="#" class="btn btn-primary my-2" onclick="ShowHome()">Voltar para home</a>
-            <a href="#" class="btn btn-secondary my-2" onclick="Enviar()">Enviar</a>
-          </div>
+  <section id="contact" hidden="true">
+    <div class="container" >
+      <div class="py-5 text-center">
+        <h2>Formulário de contato</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-11 order-md-1">
+          <form id="contactForm" class="needs-validation" novalidate="">
+            <div class="mb-3">
+              <label for="txtNome">*Nome</label>
+              <input type="text" class="form-control" id="txtNome" placeholder="" required>
+              <div class="invalid-feedback">
+                É obrigatório inserir um nome válido.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="txtEmail">*Email</label>
+              <input type="email" class="form-control" id="txtEmail" placeholder="exemplo@exemplo.com" required>
+              <div class="invalid-feedback">
+                Por favor, insira um endereço de e-mail válido, para atualizações de entrega.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="txtMensagem">*Mensagem</label>
+              <textarea id="txtMensagem" class="form-control" placeholder="Gostaria de..." name="txtMensagem" rows="5"
+                required></textarea>
+              <div class="invalid-feedback">
+                Por favor, informe uma mensagem.
+              </div>
+            </div>
+            <div class="text-center">
+              <p>
+                <span id="errorMsg" class="error"></span><br>
+                <a href="#" class="btn btn-primary my-2" onclick="ShowHome()">Voltar para home</a>
+                <a href="#" class="btn btn-secondary my-2" onclick="Enviar()">Enviar</a>
+              </p>
+            </div>
+          </form>
+        </div>
         </form>
       </div>
     </div>
@@ -173,65 +191,67 @@
       <p>Adintel@ 2022<br />Rua Caim, 71, Jardim São Pedro - Barueri SP, Brasil, cep 06402-230.</p>
     </div>
   </footer>
+  
 </body>
-  <script src="./scripts/jquery-3.2.1.slim.min.js.transferir" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="./scripts/jquery-3.2.1.slim.min.js.transferir"><\/script>')</script>
-  <script src="./scripts/popper.min.js.transferir"></script>
-  <script src="./scripts/bootstrap.min.js.transferir"></script>
-  <script src="./scripts/holder.min.js.transferir"></script>
-  <script>
-    function ShowForm() {
-      document.getElementById("home").hidden = true;
-      document.getElementById("footer").hidden = true;
-      document.getElementById("contact").hidden = false;
-      document.getElementById("address").hidden = false;
+<script src="./scripts/jquery-3.2.1.slim.min.js.transferir"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="./scripts/jquery-3.2.1.slim.min.js.transferir"><\/script>')</script>
+<script src="./scripts/popper.min.js.transferir"></script>
+<script src="./scripts/bootstrap.min.js.transferir"></script>
+<script src="./scripts/holder.min.js.transferir"></script>
+<script>
+  function ShowForm() {
+    document.getElementById("home").hidden = true;
+    document.getElementById("footer").hidden = true;
+    document.getElementById("contact").hidden = false;
+    document.getElementById("address").hidden = false;
+  }
+
+  function ShowHome() {
+    document.getElementById("home").hidden = false;
+    document.getElementById("footer").hidden = false;
+    document.getElementById("contact").hidden = true;
+    document.getElementById("address").hidden = true;
+  }
+
+  function Enviar() {
+    const form = document.getElementById("contactForm");
+    var nome = form.elements["txtNome"].value.trim();
+    var email = form.elements["txtEmail"].value.trim();
+    var mensagem = form.elements["txtMensagem"].value.trim();
+    var errorMsg = document.getElementById("errorMsg");
+
+    // Validando se os campos estão preenchidos
+    if (nome === "" || email === "" || mensagem === "") {
+      errorMsg.textContent = "Por favor, preencha todos os campos.";
+      return;
     }
 
-    function ShowHome() {
-      document.getElementById("home").hidden = false;
-      document.getElementById("footer").hidden = false;
-      document.getElementById("contact").hidden = true;
-      document.getElementById("address").hidden = true;
+    // Validando o formato do email
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      errorMsg.textContent = "Por favor, insira um email válido.";
+      return;
     }
 
-    function Enviar() {
-      const form = document.getElementById("contactForm");
-      var nome = form.elements["txtNome"].value.trim();
-      var email = form.elements["txtEmail"].value.trim();
-      var mensagem = form.elements["txtMensagem"].value.trim();
-      var errorMsg = document.getElementById("errorMsg");
+    //Código que envia o email
+    // Configuração para enviar o email usando fetch
+    var apiUrl = "https://localhost:7089/SendEmail"; // Substitua pelo endpoint correto da sua API
 
-      // Validando se os campos estão preenchidos
-      if (nome === "" || email === "" || mensagem === "") {
-        errorMsg.textContent = "Por favor, preencha todos os campos.";
-        return;
-      }
+    var emailData = {
+      from: email,
+      to: ["adintelti@gmail.com"],
+      subject: `contato de ${nome}`,
+      body: `mensagem informada no formulário: ${mensagem}`
+    };
 
-      // Validando o formato do email
-      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
-        errorMsg.textContent = "Por favor, insira um email válido.";
-        return;
-      }
-
-      //Código que envia o email
-      // Configuração para enviar o email usando fetch
-      var apiUrl = "https://localhost:7089/SendEmail"; // Substitua pelo endpoint correto da sua API
-
-      var emailData = {
-        from: email,
-        to: [ "adintelti@gmail.com" ],
-        subject: `contato de ${nome}`,
-        body: `mensagem informada no formulário: ${mensagem}`
-      };
-
-      fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(emailData)
-      })
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(emailData)
+    })
       .then(response => {
         if (response.ok) {
           alert('Email enviado com sucesso!');
@@ -246,15 +266,15 @@
         alert('Houve um erro ao enviar o email. Por favor, tente novamente mais tarde.');
         errorMsg.textContent = "Houve um erro ao enviar o email. Por favor, tente novamente mais tarde.";
       });
-    }
-  </script>
+  }
+</script>
 
-  <svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none"
-    style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
-    <defs>
-      <style type="text/css"></style>
-    </defs><text x="0" y="17"
-      style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text>
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none"
+  style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
+  <defs>
+    <style type="text/css"></style>
+  </defs><text x="0" y="17"
+    style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text>
+</svg>
 
 </html>
